@@ -13,13 +13,8 @@ st.title(':bar_chart: SuperStore Exploratory Data Analysis')
 st.markdown('<style>div.block-container{padding-top: 1rem;}</style>', unsafe_allow_html=True)
 
 file = st.file_uploader(":file_folder: Upload your file", type=['csv'])
-custom_name = st.text_input("Enter a custom name for the file (optional):")
-
 if file is not None:
-    if custom_name:
-        file_name = custom_name + ".csv"
-    else:
-        file_name = file.name
+    file_name = file.name
 
     st.write(f"File Name: {file_name}")
 
@@ -32,5 +27,17 @@ if file is not None:
     # Read the uploaded file into a DataFrame
     df = pd.read_csv(file_name)
 else:
-    df = pd.read_csv('Superstore.csv')
+    df = pd.read_excel('Superstore.xls')
 
+col1, col2 = st.columns((2))
+df['Order Date'] = pd.to_datetime(df['Order Date'])
+start_date = pd.to_datetime(df["Order Date"]).min()
+end_date = pd.to_datetime(df["Order Date"]).max()
+
+with col1:
+    date1 = pd.to_datetime(st.date_input("Start Date", start_date))
+
+with col2:
+    date2 = pd.to_datetime(st.date_input("End Date", end_date))
+
+df = df[(df["Order Date"] >= date1) & (df["Order Date"] <= date2)].copy()
