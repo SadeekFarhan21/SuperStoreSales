@@ -56,3 +56,22 @@ else:
     df3 = df2[df2["State"].isin(state)]
 
 city = st.sidebar.multiselect("Pick the City",df3["City"].unique())
+
+if not region and not state and not city:
+    filtered_df = df
+elif not state and not city:
+    filtered_df = df[df["Region"].isin(region)]
+elif not region and not city:
+    filtered_df = df[df["State"].isin(state)]
+elif state and city:
+    filtered_df = df3[df["State"].isin(state) & df3["City"].isin(city)]
+elif region and city:
+    filtered_df = df3[df["Region"].isin(region) & df3["City"].isin(city)]
+elif region and state:
+    filtered_df = df3[df["Region"].isin(region) & df3["State"].isin(state)]
+elif city:
+    filtered_df = df3[df3["City"].isin(city)]
+else:
+    filtered_df = df3[df3["Region"].isin(region) & df3["State"].isin(state) & df3["City"].isin(city)]
+
+category_df = filtered_df.groupby(by = ["Category"], as_index = False)["Sales"].sum()
