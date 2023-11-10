@@ -2,3 +2,8 @@ pandas
 plotly
 streamlit
 warnings
+pandas
+streamlit
+plotly
+streamlit-analytics
+yfinance
