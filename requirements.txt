@@ -1,7 +1,6 @@
 pandas
 plotly
 streamlit
-warnings
 pandas
 streamlit
 plotly
