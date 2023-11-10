@@ -48,3 +48,9 @@ if not region:
     df2 = df.copy()
 else:
     df2 = df[df["Region"].isin(region)]
+
+state = st.sidebar.multiselect("Pick the State", df2["State"].unique())
+if not state:
+    df3 = df2.copy()
+else:
+    df3 = df2[df2["State"].isin(state)]
