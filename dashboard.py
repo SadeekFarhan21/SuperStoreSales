@@ -100,3 +100,9 @@ with col1:
     fig = px.bar(category_df, x = "Category", y = "Sales", text = ['${:,.2f}'.format(x) for x in category_df["Sales"]],
                  template = "seaborn")
     st.plotly_chart(fig,use_container_width=True, height = 200)
+
+with col2:
+    st.subheader("Region wise Sales")
+    fig = px.pie(filtered_df, values = "Sales", names = "Region", hole = 0.5)
+    fig.update_traces(text = filtered_df["Region"], textposition = "outside")
+    st.plotly_chart(fig,use_container_width=True)
