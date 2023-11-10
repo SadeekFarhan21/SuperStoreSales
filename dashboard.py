@@ -54,3 +54,5 @@ if not state:
     df3 = df2.copy()
 else:
     df3 = df2[df2["State"].isin(state)]
+
+city = st.sidebar.multiselect("Pick the City",df3["City"].unique())
