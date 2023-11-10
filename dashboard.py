@@ -41,3 +41,10 @@ with col2:
     date2 = pd.to_datetime(st.date_input("End Date", end_date))
 
 df = df[(df["Order Date"] >= date1) & (df["Order Date"] <= date2)].copy()
+
+st.sidebar.header('Choose your filter: ')
+region = st.sidebar.multiselect("Pick your Region", df["Region"].unique())
+if not region:
+    df2 = df.copy()
+else:
+    df2 = df[df["Region"].isin(region)]
