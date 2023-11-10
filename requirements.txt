@@ -7,3 +7,5 @@ plotly
 streamlit-analytics
 yfinance
 xlrd
+seaborn
+matplotlib
