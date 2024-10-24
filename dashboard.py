@@ -32,12 +32,8 @@ start_date = pd.to_datetime(df["Order Date"]).min()
 end_date = pd.to_datetime(df["Order Date"]).max()
 
 with col1:
-    st.subheader("Category wise Sales")
-    fig = px.bar(category_df, x="Category", y="Sales", text=['${:,.2f}'.format(x) for x in category_df["Sales"]],
-                                 template="seaborn")
-    fig.update_layout(width=800, height=500)  # Set figure size
-    st.plotly_chart(fig, use_container_width=True)  # Use container width
-    
+    date1 = pd.to_datetime(st.date_input("Start Date", start_date))
+
 with col2:
     date2 = pd.to_datetime(st.date_input("End Date", end_date))
 
