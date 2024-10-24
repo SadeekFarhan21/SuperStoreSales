@@ -22,7 +22,7 @@ if file is not None:
     st.success(f"File saved successfully: {file_name}")
 
     # Read the uploaded file into a DataFrame
-    df = pd.read_excel('Superstore.xls')
+    df = pd.read_csv(file_name)
 else:
     df = pd.read_excel('Superstore.xls').sample(200)
 
